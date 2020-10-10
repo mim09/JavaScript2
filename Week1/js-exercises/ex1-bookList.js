@@ -1,42 +1,53 @@
-/**
-  
- ** Exercise 1: The book list **
-
-  I 'd like to display my three favorite books inside a nice webpage!
-
-  1. Iterate through the array of books.
-  2. For each book, create a `<p>`
-  element with the book title and author and append it to the page.
-  3. Use a `<ul>`  and `<li>` to display the books.
-  4. Add an `<img>` to each book that links to a URL of the book cover.
-  5. Change the style of the book depending on whether you have read it(green) or not(red).
-
-  The end result should look something like this:
-  https: //hyf-js2-week1-makeme-ex1-demo.herokuapp.com/
-
-  */
-
-function createBookList(books) {
-  // your code goes in here, return the ul element
-}
-
-const books = [{
+// Exercise 1: The book list
+const books = [
+  {
     title: 'The Design of Everyday Things',
     author: 'Don Norman',
-    alreadyRead: false
+    alreadyRead: false,
   },
   {
     title: 'The Most Human Human',
     author: 'Brian Christian',
-    alreadyRead: true
+    alreadyRead: true,
   },
   {
     title: 'The Pragmatic Programmer',
     author: 'Andrew Hunt',
-    alreadyRead: true
-  }
+    alreadyRead: true,
+  },
 ];
-
-let ulElement = createBookList(books);
-
-document.querySelector("#bookList").appendChild(ulElement);
+const ul = document.createElement('ul'); //ceate ul
+document.body.appendChild(ul); // append it to the body
+ul.style.display = 'flex';
+ul.style.justifyContent = 'flex-start';
+//for each element in the array books do as follows
+books.forEach((element) => {
+  const p = document.createElement('p'); //creates three paragraph's
+  p.innerText = element.title;
+  p.style.fontSize = '1.3rem'; // adjust paragraph's font size
+  const li = document.createElement('li'); // create lists
+  li.style.listStyle = 'none'; // remove the circle default list style
+  li.style.padding = '1rem'; // adds padding
+  li.style.flexBasis = '25%'; //each list has 25% of flex basis width
+  const image = document.createElement('img'); // create image element
+  image.src = 'https://prodimage.images-bn.com/pimages/9780465050659_p0_v5_s1200x630.jpg'; // assigh the same source to the images
+  image.style.width = '50%';
+  ul.appendChild(li); // append lists to the ul
+  li.appendChild(p);
+  li.appendChild(image);
+  //checks if the book is already read then gives list background color green
+  if (element.alreadyRead) {
+    li.style.backgroundColor = 'green';
+    if (element.author === 'Brian Christian') {
+      // checks the title and change the image source to the correct one
+      image.src =
+        'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1295465264l/8884400.jpg';
+      li.style.margin = '0 1rem'; //gives margin left and right to the particular list
+    } else {
+      image.src = 'https://www.studystore.nl/images/9780132119177/3/1';
+    }
+  } else {
+    // makes the background color read if not alreadyRead
+    li.style.backgroundColor = 'red';
+  }
+});

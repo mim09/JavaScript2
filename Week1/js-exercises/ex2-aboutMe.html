@@ -1,12 +1,15 @@
+<!-- Exercise 2: About me -->
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8" />
   <title>About Me</title>
-
-  <!-- 5. Add a style tag that sets a rule for .list-item to make the color red. -->
-
+  <style>
+    .list-item {
+      color: red;
+    }
+  </style>
 </head>
 
 <body>
@@ -17,8 +20,23 @@
     <li>Favorite food: <span id="fav-food"></span></li>
     <li>Hometown: <span id="hometown"></span></li>
   </ul>
-
-  <!-- 1. add a script tag here the links to ex2-aboutMe.js -->
+  <script>
+    document.body.style.fontFamily = "Arial, sans-serif"; // change font family
+    const nickname = document.getElementById('nickname');
+    nickname.innerText = "Mimi";
+    const favFood = document.getElementById('fav-food');
+    favFood.innerText = "Kitfo";
+    const homeTown = document.getElementById('hometown');
+    homeTown.innerText = "Addis Abeba";
+    let li = document.querySelectorAll('li');
+    //iterate through lists and add a class to each of them
+    for (let i = 0; i < li.length; i++) {
+      li[i].classList = 'list-item';
+    }
+    const myImage = document.createElement('img'); // create image element
+    myImage.src = 'https://ca.slack-edge.com/T0EJTUQ87-U0197LVAL00-8d10b902defd-512'; // add a source to the image 
+    document.body.appendChild(myImage);    // append the image created above to the body 
+  </script>
 </body>
 
 </html>
