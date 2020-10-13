@@ -8,12 +8,9 @@
 
  */
 function doubleEvenNumbers(numbers) {
-  const newNumbers = [];
-  for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] % 2 === 0) {
-      newNumbers.push(numbers[i] * 2);
-    }
-  }
+  const newNumbers = myNumbers.filter(number => number % 2 == 0) //use filter method to get even numbers
+    .map(number => number * 2); // multiply by two 
+
   return newNumbers;
 }
 
