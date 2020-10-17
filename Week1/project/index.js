@@ -34,5 +34,5 @@ function generateQuote() {
   h2.innerHTML = quotes[random()].by;
 }
 
-const random = () => { return Math.round(Math.random(quotes.length)) };
+const random = () => Math.round(Math.random(quotes.length));
 button.addEventListener('click', generateQuote)

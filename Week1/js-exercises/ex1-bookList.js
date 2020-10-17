@@ -18,20 +18,13 @@ const books = [
 ];
 const ul = document.createElement('ul'); //ceate ul
 document.body.appendChild(ul); // append it to the body
-ul.style.display = 'flex';
-ul.style.justifyContent = 'flex-start';
 //for each element in the array books do as follows
 books.forEach((element) => {
   const p = document.createElement('p'); //creates three paragraph's
   p.innerText = element.title;
-  p.style.fontSize = '1.3rem'; // adjust paragraph's font size
   const li = document.createElement('li'); // create lists
-  li.style.listStyle = 'none'; // remove the circle default list style
-  li.style.padding = '1rem'; // adds padding
-  li.style.flexBasis = '25%'; //each list has 25% of flex basis width
   const image = document.createElement('img'); // create image element
   image.src = 'https://prodimage.images-bn.com/pimages/9780465050659_p0_v5_s1200x630.jpg'; // assigh the same source to the images
-  image.style.width = '50%';
   ul.appendChild(li); // append lists to the ul
   li.appendChild(p);
   li.appendChild(image);
