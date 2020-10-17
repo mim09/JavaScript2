@@ -9,11 +9,16 @@ Call the function three times. The return values should be:
  15, 24, 33
 
  */
-
-function createBase( /* ???? */ ) {
-  // Put here your logic...
+function createBase(num) {
+  // create a function that adds the above argument num to number 6
+  const addnum = () => {
+    return num + 6; //returns the sum of num and number 6
+  }
+  return addnum();
 }
-
 const addSix = createBase(6);
 
-// Put here your function calls...
+// calling createBase function
+createBase(9);
+createBase(18);
+createBase(27)
