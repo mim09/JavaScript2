@@ -26,13 +26,48 @@ Don't you just love the thrill of the lottery? What if I told you we can make ou
 
 */
 
-function threeFive(startIndex, stopIndex, threeCallback, fiveCallback) {
-  const numbers = [];
-  // make array
-  // start at beginning of array and check if you should call threeCallback or fiveCallback or go on to next
-}
+//function threeFive(startIndex, stopIndex, threeCallback, fiveCallback) {
+//const numbers = [];
+// make array
+// start at beginning of array and check if you should call threeCallback or fiveCallback or go on to next
+//}
 
-threeFive(10, 15, sayThree, sayFive);
+// threeFive(10, 15, sayThree, sayFive);
 
 // Should create an array [10,11,12,13,14,15]
 // and call sayFive, sayThree, sayThree, sayFive
+
+function threeFive(startIndex, stopIndex, threeCallback) { //, fiveCallback) {
+  const numbers = [];
+  // make array
+  // start at beginning of array and check if you should call threeCallback or fiveCallback or go on to next
+  const array = [];
+  arrayLength = stopIndex - startIndex;
+  for (let i = startIndex; i <= stopIndex; i++) {
+    array.push(i);
+    startIndex++
+  }
+  console.log(array);
+
+  function threeCallback() {
+    console.log('Say Three');
+  }
+  function fiveCallback() {
+    console.log('Say Five');
+  }
+
+  array.filter(function (arrayElement) {
+    if (arrayElement % 3 === 0 && arrayElement % 5 === 0) {
+      threeCallback();
+      fiveCallback();
+    }
+    else if (arrayElement % 3 === 0) {
+      return threeCallback();
+    }
+    else if (arrayElement % 5 === 0) {
+      return fiveCallback();
+    }
+
+  });
+}
+threeFive(10, 15, 'sayThree', 'sayFive');

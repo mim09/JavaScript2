@@ -1,21 +1,14 @@
-/**
- 
- ** Exercise 2: The lottery machine **
-
-Write a function called removeDuplicates. This function accept an array as an argument
-does not return anything but removes any duplicate elements from the array.
-
- The  function should remove duplicate elements.So the result should be:
-
-   
- */
-
+/* Exercise 2: The lottery machine **/
 
 // WRITE YOUR FUNCTION HERE
+// function accepts an array 
+function removeDuplicates(array) {
+  array = array.filter(function (value, index, array) {
+    return array.indexOf(value) == index; // returns only unique elements 
+  });
+  console.log(array)
+}
 
 const letters = ['a', 'b', 'c', 'd', 'a', 'e', 'f', 'c', 'b'];
 
 removeDuplicates(letters);
-
-if (letters === ['a', 'b', 'c', 'd', 'e', 'f'])
-  console.log("Hooray!")
