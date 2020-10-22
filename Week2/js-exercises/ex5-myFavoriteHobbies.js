@@ -17,15 +17,15 @@ function createHTMLList(arr) {
     li.innerText = element;
     ul.appendChild(li);
   });
- 
+
 }
 
 const myHobbies = [
-  'Meditation',
   'Reading',
+  'Walking',
   'Programming',
-  'Hanging out with friends',
-  'Going to the gym',
+  'Watching movies',
+  'Playing with my kids'
 ];
 
 createHTMLList(myHobbies);

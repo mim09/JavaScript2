@@ -8,37 +8,39 @@
   If the timer finishes the timer should be replaced by the message: Time 's up!
  * 
  */
-const downArrowButton = document.querySelector('#left-arrow');
-const upArrowButton = document.querySelector('#right-arrow');
-let number = document.querySelectorAll('.number-to-manipulate');
-num = parseInt(number[0].innerHTML);
-let numberWithTwoDots = number[1].innerHTML
-let numbBeforeDecimal = number[1].innerHTML.toString().split(':')[0];
-let numbAfterDecimal = number[1].innerHTML.toString().split(':')[1];
+const decreaseTime = document.querySelector('#decrease-time');
+const increaseTime = document.querySelector('#increase-time');
+// let number = document.querySelectorAll('.number-to-manipulate');
+let sessionLength = document.getElementById('session-length');
+let timer = document.getElementById('timer');
+num = parseInt(sessionLength.innerHTML);
+let numberWithTwoDots = timer.innerHTML
+let numbBeforeDecimal = timer.innerHTML.toString().split(':')[0];
+let numbAfterDecimal = timer.innerHTML.toString().split(':')[1];
 let pause = false;
 let play = true;
 //counts down the session value 
-downArrowButton.addEventListener('click', function () {
+decreaseTime.addEventListener('click', function () {
   if (num > 0) {
     num--;
-    number[0].innerHTML = ('0' + num).slice(-2);
-    number[1].innerHTML = ('0' + num).slice(-2) + (':00');
+    sessionLength.innerHTML = ('0' + num).slice(-2);
+    timer.innerHTML = ('0' + num).slice(-2) + (':00');
     numbBeforeDecimal = num;
     numbAfterDecimal = '00';
     if (num === 0) {
-      number[1].innerHTML = "TIME'S UP";
+      timer.innerHTML = "TIME'S UP";
     }
   } else {
-    number[0].innerHTML = ('0' + num).slice(-2);
-    number[1].innerHTML = "TIME'S UP";
+    sessionLength.innerHTML = ('0' + num).slice(-2);
+    timer.innerHTML = "TIME'S UP";
     play = false;
-  } 
+  }
 });
 //counts up the session value
-upArrowButton.addEventListener('click', function () {
+increaseTime.addEventListener('click', function () {
   num = num + 1;
-  number[0].innerHTML = ('0' + num).slice(-2);
-  number[1].innerHTML = ('0' + num).slice(-2) + (':00');
+  sessionLength.innerHTML = ('0' + num).slice(-2);
+  timer.innerHTML = ('0' + num).slice(-2) + (':00');
   numbBeforeDecimal = num;
   numbAfterDecimal = '00';
   play = true;
@@ -51,7 +53,7 @@ let startTimer;
 playButton.addEventListener('click', function () {
   playButton.style.display = 'none';
   stopButton.style.display = 'inline';
-  startTimer = setInterval(timer, 1000);
+  startTimer = setInterval(timerStarter, 1000);
 });
 // stops the couting down
 stopButton.addEventListener('click', function () {
@@ -65,14 +67,14 @@ pauseButton.addEventListener('click', function () {
   if (pause) {
     clearInterval(startTimer);
   } else {
-    startTimer = setInterval(timer, 1000);
-  } 
+    startTimer = setInterval(timerStarter, 1000);
+  }
 });
 
 //timer counts down the second from 60 to 00 
 // counts down the value of minutes when the second reaches 00 
 let initial = 60;
-function timer() {
+function timerStarter() {
   if (play) {
     console.log(numbBeforeDecimal);
     if (numbAfterDecimal === '00') {
@@ -80,25 +82,24 @@ function timer() {
       numbBeforeDecimal = numbBeforeDecimal - 1;
       if (numbBeforeDecimal === '00') {
         clearInterval(startTimer);
-        number[1].innerHTML.innerHTML = "TIME'S UP";
+        timer.innerHTML = "TIME'S UP";
       }
-    }    
+    }
     numbAfterDecimal = initial - 1;
     numbBeforeDecimal = ('0' + numbBeforeDecimal).slice(-2);
     numbAfterDecimal = ('0' + numbAfterDecimal).slice(-2);
     initial--;
-    number[1].innerHTML = numbBeforeDecimal + ':' + numbAfterDecimal;
-  }  
-  upArrowButton.disabled = true;
-  downArrowButton.disabled = true;
+    timer.innerHTML = numbBeforeDecimal + ':' + numbAfterDecimal;
+  }
+  increaseTime.disabled = true;
+  decreaseTime.disabled = true;
 }
 // it resets the timer to the initial session value
 function reset() {
   clearInterval(startTimer);
   numbAfterDecimal = '00';
   numbBeforeDecimal = num;
-  number[1].innerHTML = num + ':' + numbAfterDecimal;
-  upArrowButton.disabled = false;
-  downArrowButton.disabled = false;
- }
- 
+  timer.innerHTML = num + ':' + numbAfterDecimal;
+  increaseTime.disabled = false;
+  decreaseTime.disabled = false;
+}
